@@ -28,8 +28,33 @@ class EventManager:
          else:
              return None
          
-    def search_participants(self, ):
+    def search_participants(self, pid):
+        if pid in self.participants:
+            name = self.participants[pid]
+            confirmed = []
+            waiting_list = []
 
+            for event in self.events.values():
+                if pid in event.confirmed:
+                    confirmed.append(event)
+                    
+                if pid in event.waiting_list:
+                    waiting_list.append(event)
+
+            print(f"Participant: {name} ({pid}) \n")
+
+            if not confirmed and not waiting_list:
+                print("Participant isn't registered in any event.")
+
+            if confirmed:
+                print("Confirmed Events:")
+                for event in confirmed:
+                    print(f"{event.event_id} - {event.name}")
+            
+            if waiting_list:
+                print("Waiting List:")
+                for event in waiting_list:
+                    print(f"{event.event_id} - {event.name}")
         
     def display_all_events(self, ):
 
