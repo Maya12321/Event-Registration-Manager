@@ -90,7 +90,7 @@ class EventManager:
                 print(f"Fill Percentage: {event.get_fill_percentage():.2f}%")
                 print(f"---------------------------------")
 
-     def save_data(self): 
+    def save_data(self): 
         # preparing the data dictionary
         data = {
             "participants" : self.participants,
@@ -113,5 +113,24 @@ class EventManager:
             json.dump(data, file, indent = 4)
 
     def load_data(self):
+        try:
+            with open("data.json", "r") as file:
+                data = json.load(file)
+            
+            self.events.clear()
+            self.participants = data["participants"]
 
-    
+            for event in data["events"]:
+                event_id = event["event_id"]
+                name = event["name20"]
+                capacity = event["capacity"]
+                event_obj = Event(event_id, name, capacity)
+                event_obj.confirmed = event["confirmed"]
+                event_obj.waiting_list = event["waiting_list"]
+                self.events[event_id] = event_obj
+           
+        except FileNotFoundError:
+            print("File doesn't exist.")
+
+        except json.JSONDecodeError:
+            print("File invalid.")
