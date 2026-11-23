@@ -56,10 +56,42 @@ class EventManager:
                 for event in waiting_list:
                     print(f"{event.event_id} - {event.name}")
         
-    def display_all_events(self, ):
+    def display_all_events(self):
+        if not self.events:
+            print("No events available.")
+        
+        else:
+            for event in self.events.values():
+                print(f"Event ID: {event.event_id}")
+                print(f"Name: {event.name}")
+                print(f"Capacity: {event.capacity}")
 
-    def save_data():
+                if event.confirmed:
+                    print("Confirmed Participants: ", end = '')
+                    for pid in event.confirmed:
+                        if pid == event.confirmed[-1]:
+                            print(self.participants[pid])
+                        else:
+                            print(self.participants[pid], end = ', ')
+                else:
+                    print("No confirmed participants for this event.")
 
-    def load_data():
+                if event.waiting_list:
+                    print("Waiting List: ", end = '')
+                    for pid in event.waiting_list:
+                        if pid == event.waiting_list[-1]:
+                            print(self.participants[pid])
+                        else:
+                            print(self.participants[pid], end = ', ')
+                else:
+                    print("No waiting participants for this event.")
+
+                print(f"Free Seats: {event.get_free_seats()}")
+                print(f"Fill Percentage: {event.get_fill_percentage():.2f}%")
+                print(f"---------------------------------")
+
+    def save_data(self):
+
+    def load_data(self):
 
     
