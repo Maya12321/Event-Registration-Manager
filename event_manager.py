@@ -1,12 +1,14 @@
-import event
+from event import Event
+import json
+
 class EventManager: 
     def __init__(self):
         self.events = {}
         self.participants = {}
     
-    def add_events(self, event_ID, name, capacity):
+    def add_event(self, event_id, name, capacity):
         # 1. Check if the event's ID already exists 
-        if event_ID in self.events:
+        if event_id in self.events:
             return False, "Error: event already exists."
         
         # 2. Check if the event's capacity is valid
@@ -14,19 +16,14 @@ class EventManager:
             return False, "Error: event capacity invalid."
 
         # 3. Create the new event and add to existing events
-        event = Event(event_ID, name, capacity)
-        self.events[event_ID] = event
+        event = Event(event_id, name, capacity)
+        self.events[event_id] = event
         return True, "Event added successfully." 
     
-    def find_event(self, event_ID):
-        # Check if the event's ID already exists
-        # if it exists then return the event asked for
-         if event_ID in self.events:  
-             return True, self.events[event_ID]
-        
-        # Otherwise return none
-         else:
-             return None
+    def find_event(self, event_id):
+        if event_id in self.events: # check if the event exists by its ID
+             return self.events[event_id] # if event exists return the event object 
+        # if event doesn't exist auto return None
          
     def search_participants(self, pid):
         if pid in self.participants:
@@ -55,6 +52,9 @@ class EventManager:
                 print("Waiting List:")
                 for event in waiting_list:
                     print(f"{event.event_id} - {event.name}")
+                
+        else:
+            print("Participant ID not found.")
         
     def display_all_events(self):
         if not self.events:
@@ -109,8 +109,16 @@ class EventManager:
             data["events"].append(event_data)
 
         # saving data to the JSON file
-        with open("data.json", "w") as file:
-            json.dump(data, file, indent = 4)
+        try:
+            with open("data.json", "w") as file:
+                json.dump(data, file, indent = 4)
+        except PermissionError:
+            print("The program has no permission to write to the file.")
+        except OSError:
+            print("Error in accessing or writing the file.")
+        else:
+            print("Data saved successfully!")
+
 
     def load_data(self):
         try:
@@ -128,9 +136,12 @@ class EventManager:
                 event_obj.confirmed = event["confirmed"]
                 event_obj.waiting_list = event["waiting_list"]
                 self.events[event_id] = event_obj
-           
+             
         except FileNotFoundError:
             print("File doesn't exist.")
 
         except json.JSONDecodeError:
             print("File invalid.")
+
+        else:
+            print("Data loaded successfully!")
