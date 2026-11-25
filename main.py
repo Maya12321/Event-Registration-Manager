@@ -1,5 +1,4 @@
 from event_manager import EventManager
-from event import Event
 
 def main():
     print("Welcome to the Event Registration Manager")
@@ -53,24 +52,29 @@ def main():
                 
             case "3":
                 event_id = input("Enter event ID: ")
-                pid = input("Enter participant ID to cancel: ")
-                
-                success, message = manager.cancel_participant(pid)
-                print(message)
+                event = manager.find_event(event_id)
+                if event is None:
+                    print("No event was found.")                
+                else:
+                    pid = input("Enter participant ID to cancel: ")
+                    success, message = event.cancel_participant(pid)
+                    print(message)
 
             case "4":
-
+                manager.display_all_events()
 
             case "5":
-                
+                pid = input("Enter participant ID: ")
+                manager.search_participants(pid)
 
             case "6":
-
+                manager.save_data()
 
             case "7":
-
+                manager.load_data()
 
             case "8":
+                print("Goodbye!")
                 break
 
             case _:
