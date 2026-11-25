@@ -1,0 +1,31 @@
+ai doc: 
+learned json, 
+with open, 
+planned the project, 
+made to do lists, 
+debugged the project,
+
+
+comments: 1. find_event()
+Think about two logical sections:
+- Searching for an event using its ID and returning the matching Event object.
+- Handling the case where no matching event exists.
+Your existing comments are already a good start!
+2. search_participants()
+I'd divide the method into these sections:
+1. Checking whether the participant ID exists.
+2. Retrieving the participant's name and preparing lists for their registrations.
+3. Searching through all events for confirmed and waiting-list registrations.
+4. Displaying the participant's information.
+5. Displaying confirmed events, if any.
+6. Displaying waiting-list events, if any.
+7. Handling a participant ID that doesn't exist.
+3. display_all_events()
+Here, the logical sections are:
+1. Checking whether any events exist.
+2. Iterating through all events and displaying their basic information.
+3. Displaying confirmed participants.
+4. Displaying waiting-list participants.
+5. Displaying event availability and occupancy statistics.
+
+add exceptions in save data in event manager
