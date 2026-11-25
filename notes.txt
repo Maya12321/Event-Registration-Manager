@@ -1,0 +1,6 @@
+ai doc: 
+learned json, 
+with open, 
+planned the project, 
+made to do lists, 
+debugged the project,
