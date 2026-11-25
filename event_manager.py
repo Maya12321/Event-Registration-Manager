@@ -109,8 +109,39 @@ class EventManager:
             data["events"].append(event_data)
 
         # saving data to the JSON file
-        with open("data.json", "w") as file:
-            json.dump(data, file, indent = 4)
+        try:
+            with open("data.json", "w") as file:
+                json.dump(data, file, indent = 4)
+        except PermissionError:
+            print("The program has no permission to write to the file.")
+        except OSError:
+            print("Error in accessing or writing the file.")
+        else:
+            print("Data saved successfully!")
 
-    def load_data():
-        
+
+    def load_data(self):
+        try:
+            with open("data.json", "r") as file:
+                data = json.load(file)
+            
+            self.events.clear()
+            self.participants = data["participants"]
+
+            for event in data["events"]:
+                event_id = event["event_id"]
+                name = event["name20"]
+                capacity = event["capacity"]
+                event_obj = Event(event_id, name, capacity)
+                event_obj.confirmed = event["confirmed"]
+                event_obj.waiting_list = event["waiting_list"]
+                self.events[event_id] = event_obj
+             
+        except FileNotFoundError:
+            print("File doesn't exist.")
+
+        except json.JSONDecodeError:
+            print("File invalid.")
+
+        else:
+            print("Data loaded successfully!")
