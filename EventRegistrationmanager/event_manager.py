@@ -1,4 +1,4 @@
-from event import Event
+import event
 import json
 
 class EventManager: 
@@ -16,8 +16,8 @@ class EventManager:
             return False, "Error: event capacity invalid."
 
         # 3. Create the new event and add to existing events
-        event = Event(event_id, name, capacity)
-        self.events[event_id] = event
+        ev = event.Event(event_id, name, capacity)
+        self.events[event_id] = ev
         return True, "Event added successfully." 
     
     def find_event(self, event_id):
@@ -132,7 +132,7 @@ class EventManager:
                 event_id = event["event_id"]
                 name = event["name20"]
                 capacity = event["capacity"]
-                event_obj = Event(event_id, name, capacity)
+                event_obj = event.Event(event_id, name, capacity)
                 event_obj.confirmed = event["confirmed"]
                 event_obj.waiting_list = event["waiting_list"]
                 self.events[event_id] = event_obj

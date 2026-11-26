@@ -1,9 +1,9 @@
-from event_manager import EventManager
+import event_manager
 
 def main():
     print("Welcome to the Event Registration Manager")
 
-    manager = EventManager()
+    manager = event_manager.EventManager()
    
     while True:
         print("        Menu        ")
@@ -74,6 +74,7 @@ def main():
                 manager.load_data()
 
             case "8":
+                # Leave the program
                 print("Goodbye!")
                 break
 
