@@ -7,16 +7,16 @@ class Event:
         self.waiting_list = []
 
     def register_participant(self, pid):
-        # 1. Check if person is already signed up
+        # Check if person is already signed up
         if pid in self.confirmed or pid in self.waiting_list:
             return False, "Error: Already registered."
         
-        # 2. If there are free seats, add to confirmed
+        # If there are free seats, add to confirmed
         if len(self.confirmed) < self.capacity:
             self.confirmed.append(pid)
             return True, "Success: Added to confirmed seats."
         
-        # 3. Otherwise, add to the waiting list
+        # Otherwise, add to the waiting list
         else:
             self.waiting_list.append(pid)
             return True, "Notice: Added to waiting list."
