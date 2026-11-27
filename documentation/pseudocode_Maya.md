@@ -1,6 +1,6 @@
 # PSEUDOCODE Maya Chehab
 __Type:__ Pseudocode  \
-__Method:__ `search_participants()` in `EventManager class`  \
+__Method:__ `search_participants()` in `EventManager` class  \
 __Student:__ Maya Chehab
 
 ```text
