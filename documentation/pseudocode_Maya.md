@@ -1,9 +1,7 @@
 # PSEUDOCODE Maya Chehab
-Type: Pseudocode
-Method: search_participants() in EventManager class
-Student: Maya Chehab
-
-# `search_participants(pid)` Pseudocode
+__Type:__ Pseudocode  \
+__Method:__ `search_participants()` in `EventManager class`  \
+__Student:__ Maya Chehab
 
 ```text
 FUNCTION search_participants(pid):
