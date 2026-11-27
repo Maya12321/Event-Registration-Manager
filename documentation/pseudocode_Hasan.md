@@ -1,9 +1,7 @@
 # PSEUDOCODE Hasan Ismail
-Type: Pseudocode  \
-Method: register_participant(pid) in Event class  \
-Student: Hasan Ismail
-
-## `register_participant(pid)` Pseudocode
+__Type:__ Pseudocode  \
+__Method:__ `register_participant(pid)` in `Event` class  \
+__Student:__ Hasan Ismail
 
 ```text
 FUNCTION register_participant(pid)
